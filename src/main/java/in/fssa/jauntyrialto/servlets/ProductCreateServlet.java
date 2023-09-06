@@ -1,6 +1,8 @@
 package in.fssa.jauntyrialto.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,41 +10,44 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.fssa.jauntyrialto.entity.ProductEntity;
+import in.fssa.jauntyrialto.exception.ServiceException;
+import in.fssa.jauntyrialto.exception.ValidationException;
 import in.fssa.jauntyrialto.service.ProductService;
 
 /**
- * Servlet implementation class ProductCreate
+ * Servlet implementation class ProductCreateServlet
  */
-@WebServlet("/ProductCreate")
+@WebServlet("/product/create")
 public class ProductCreateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		/// TEST FOR VALID INPUT TO CREATE PRODUCT
-
+		ProductEntity product = new ProductEntity();
 		ProductService productService = new ProductService();
-
-		ProductEntity newProduct = new ProductEntity();
-		newProduct.setName("Techno M16");
-		newProduct.setSubCategoryId(1);
-		newProduct.setDescription("The most high tech");
-		newProduct.setPrice(4500.00);
-		newProduct.setActive(true);
+		PrintWriter out = response.getWriter();
 
 		try {
-			productService.create(newProduct);
-		} catch (Exception e) {
+			Integer subCategoryId = Integer.parseInt(request.getParameter("subCategory"));
+			product.setSubCategoryId(subCategoryId);
 
+			product.setName(request.getParameter("productName"));
+			product.setDescription(request.getParameter("description"));
+
+			String price = request.getParameter("price");
+			double pri = Double.parseDouble(price);
+			product.setPrice(pri);
+
+			productService.create(product);
+
+			out.println("Product Created Successfully");
+			response.sendRedirect(request.getContextPath() + "/product/new");
+		} catch (NumberFormatException e) {
 			e.printStackTrace();
+			out.println("Invalid price format. Please enter a valid number.");
+		} catch (ValidationException | ServiceException e) {
+			e.printStackTrace();
+			out.println(e.getMessage());
 		}
-
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
 }
