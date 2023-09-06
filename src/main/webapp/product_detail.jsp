@@ -79,8 +79,8 @@ h2 {
 	color: #f2c452;
 	border-radius: 5px;
 	font-family: 'Philosopher', serif;
-    font-size: 13px;
-    text-decoration: none;
+	font-size: 13px;
+	text-decoration: none;
 }
 
 .des {

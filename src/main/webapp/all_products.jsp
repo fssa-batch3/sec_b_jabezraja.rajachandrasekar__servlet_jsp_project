@@ -112,7 +112,7 @@ tbody tr:hover {
 				<td><a href="product/details?id=<%=product.getId()%>">
 						<button type="button">View Details</button>
 				</a></td>
-				<td><a href="product/?id=<%=product.getId()%>">
+				<td><a href="product/edit?id=<%=product.getId()%>">
 						<button type="button">Edit</button>
 				</a></td>
 				<td><a
