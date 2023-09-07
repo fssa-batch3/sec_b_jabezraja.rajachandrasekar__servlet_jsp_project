@@ -126,6 +126,7 @@ h2 {
 				<h2 id="ph"><%=pdt.getName()%></h2>
 				<p id="rupee">
 					₹<%=pdt.getPrice()%></p>
+					
 				<small id="inc">Inclusive of all taxes</small>
 				<!-- Add to cart or Buy Now button can be added here -->
 				<div class="addbuy">

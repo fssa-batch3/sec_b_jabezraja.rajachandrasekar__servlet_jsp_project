@@ -34,7 +34,7 @@ public class UpdateProductServlet extends HttpServlet {
 			} else {
 				product.setDescription(request.getParameter("description"));
 			}
-			product.setSubCategoryId(Integer.parseInt(request.getParameter("id")));
+			product.setSubCategoryId(Integer.parseInt(request.getParameter("subid")));
 			product.setId(Integer.parseInt(request.getParameter("id")));
 			product.setPrice(Double.parseDouble(request.getParameter("price")));
 

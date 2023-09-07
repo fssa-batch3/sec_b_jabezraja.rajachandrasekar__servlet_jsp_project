@@ -94,19 +94,19 @@ tbody tr:hover {
 	<div class="container">
 		<table class="table">
 			<tr>
-				<th>Id</th>
+				<th>S.No</th>
 				<th>Name</th>
 				<th>Price</th>
 				<th>View Details</th>
 				<th>Edit</th>
 				<th>Delete</th>
 			</tr>
-
+		<%int i =1; %>
 			<%
 			for (ProductEntity product : listOfProducts) {
 			%>
 			<tr>
-				<td><%=product.getId()%></td>
+				<td><%=i%></td>
 				<td><%=product.getName()%></td>
 				<td>₹<%=product.getPrice()%></td>
 				<td><a href="product/details?id=<%=product.getId()%>">
@@ -120,6 +120,7 @@ tbody tr:hover {
 						<button type="button">Delete</button>
 				</a></td>
 			</tr>
+			<%i++; %>
 			<%
 			}
 			%>

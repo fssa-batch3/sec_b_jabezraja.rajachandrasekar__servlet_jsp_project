@@ -140,26 +140,25 @@ input[type="button"] {
 						%>
 						</select> 
 						 <label>Product Name</label>
-						  	<input id="pname" type="text" name="productName" required> 
+						  	<input id="pname" type="text" placeholder="eg: 27' Inch Full HD Monitor" name="productName" required> 
 						 <label>Price</label>
-						  	<input id="price" type="text" name="price" required>
+						  	<input id="price" type="text" pattern="/^[0-9]+$/" placeholder="eg: 1599.99" min="1" name="price" required>
 						  <label>Description</label>
 					 	<textarea id="descrion" name="description" required> </textarea>
 				</div>
 				<div>
 					<label>Main Image</label>
-					 	<input id="mimg" type="url" name="mainIMG" required>
+					 	<input id="mimg" type="url" placeholder="Image should be in url" name="mainIMG" required>
 					<label>Sub Image 1</label>
-					 	<input id="simg1" type="url" name="subIMG1" required>
+					 	<input id="simg1" type="url" placeholder="Image should be in url" name="subIMG1" required>
 					<label>Sub Image 2</label>
-					 	<input id="smig2" type="url" name="subIMG2" required>
+					 	<input id="smig2" type="url" placeholder="Image should be in url" name="subIMG2" required>
 					<label>Sub Image 3</label>
-					 	<input id="simg3" type="url" name="subIMG3" required>
+					 	<input id="simg3" type="url" placeholder="Image should be in url" name="subIMG3" required>
 				</div>
 			</div>
 			<div class="admformbtn">
 				<div id="admfbtnd">
-			<!--	<a href="/jauntyrialtoweb/products"> </a>  -->
 					<button class="btn" type="submit">SUBMIT</button>
 					<button class="btn" type="reset">CANCEL</button>
 				</div>

@@ -13,6 +13,15 @@ body, p, h1, h2, h3, ul, li {
     padding: 0;
 }
 
+.heading{
+    text-align: center;
+    line-height: 45px;
+    color: #aa8531;
+    font-family: 'Philosopher', serif;
+    font-size: 38px;
+    margin-top: revert;
+}
+
 /* Set a background color for the body */
 body.manico {
     background-color: #fffbf2;
@@ -96,14 +105,15 @@ body.manico {
 </head>
 <jsp:include page="header.jsp"></jsp:include>
 <body class="manico">
+<h3 class="heading">Edit Form</h3>
 <% 
 ProductEntity product = (ProductEntity)	request.getAttribute("editProduct");
 %>
                 <form action="update?id=<%= product.getId() %>" method="post">
                     <div class="adm_editform">
                         <div class="inter">
-                            <input id="pro_id" type="hidden" name="id" value="<%= product.getId() %>" disabled>
-                            <input id="pro_id" type="text" name="id" value="<%= product.getSubCategoryId() %>" disabled>
+                            <input id="pro_id" type="hidden" name="id" value="<%= product.getId() %>" >
+                            <input id="pro_id" type="text" name="subid" value="<%= product.getSubCategoryId() %>" readonly>
 
                             <label>Product Name</label>
                             <input id="pname" type="text" name="name" value="<%= product.getName() %>" required>
@@ -142,6 +152,5 @@ ProductEntity product = (ProductEntity)	request.getAttribute("editProduct");
                         </div>
                     </div>
                 </form>
-
 </body>
 </html>
