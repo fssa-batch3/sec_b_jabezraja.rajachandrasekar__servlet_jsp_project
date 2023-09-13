@@ -142,7 +142,7 @@ input[type="button"] {
 						 <label>Product Name</label>
 						  	<input id="pname" type="text" placeholder="eg: 27' Inch Full HD Monitor" name="productName" required> 
 						 <label>Price</label>
-						  	<input id="price" type="text" pattern="/^[0-9]+$/" placeholder="eg: 1599.99" min="1" name="price" required>
+						  	<input id="price" type="text" placeholder="eg: 1599.99" min="1" name="price" required>
 						  <label>Description</label>
 					 	<textarea id="descrion" name="description" required> </textarea>
 				</div>

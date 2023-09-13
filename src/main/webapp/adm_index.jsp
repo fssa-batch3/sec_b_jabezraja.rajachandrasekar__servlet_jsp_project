@@ -162,12 +162,12 @@ header {
 				<div class="admface face1">
 					<div class="admcontent">
 						<img src="https://iili.io/J9K2sRe.png" alt="">
-						<h3>Form</h3>
+						<h3>Add Products</h3>
 					</div>
 				</div>
 				<div class="admface face2">
 					<div class="admcontent">
-						<p>Add Products</p>
+						<p>Form</p>
 						<a href="/jauntyrialtoweb/product/new">Read More</a>
 					</div>
 				</div>
