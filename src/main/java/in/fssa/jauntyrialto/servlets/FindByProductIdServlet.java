@@ -19,7 +19,7 @@ public class FindByProductIdServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		RequestDispatcher rd = request.getRequestDispatcher("/product_detail.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("/pages/admin/admproduct_detail.jsp");
 		rd.forward(request, response);
 
 	}

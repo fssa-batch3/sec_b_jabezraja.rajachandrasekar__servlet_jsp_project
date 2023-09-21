@@ -31,7 +31,7 @@ public class NewProduct extends HttpServlet {
 			subCategoryList = subCategoryService.getAllSubCategories();
 
 			request.setAttribute("subCategoryList", subCategoryList);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/form.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/admin/form.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (ServiceException e) {

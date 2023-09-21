@@ -38,6 +38,11 @@ public class ProductCreateServlet extends HttpServlet {
 			double pri = Double.parseDouble(price);
 			product.setPrice(pri);
 
+			product.setMainImg(request.getParameter("mainImg"));
+			product.setSubImg1(request.getParameter("subImg1"));
+			product.setSubImg2(request.getParameter("subImg2"));
+			product.setSubImg3(request.getParameter("subImg3"));
+
 			productService.create(product);
 
 			out.println("Product Created Successfully");
