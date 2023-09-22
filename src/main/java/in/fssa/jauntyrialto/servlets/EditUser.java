@@ -9,17 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.fssa.jauntyrialto.entity.UserEntity;
 import in.fssa.jauntyrialto.exception.ServiceException;
 import in.fssa.jauntyrialto.exception.ValidationException;
-import in.fssa.jauntyrialto.model.User;
 import in.fssa.jauntyrialto.service.UserService;
 import in.fssa.jauntyrialto.util.Logger;
 
 /**
- * Servlet implementation class Profile
+ * Servlet implementation class EditUser
  */
-@WebServlet("/profile")
-public class Profile extends HttpServlet {
+@WebServlet("/user/edit")
+public class EditUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	Logger logger = new Logger();
 
@@ -27,20 +27,15 @@ public class Profile extends HttpServlet {
 			throws ServletException, IOException {
 
 		try {
-			String loggedEmail = (String) request.getSession().getAttribute("loggedEmail");
+			UserEntity user = new UserService().findById(Integer.parseInt(request.getParameter("id")));
+			request.setAttribute("user", user);
 
-			if (loggedEmail != null) {
-				UserService userService = new UserService();
-				User user = userService.findUserByEmail(loggedEmail);
-				request.setAttribute("user", user);
-				RequestDispatcher requst = request.getRequestDispatcher("/pages/nav/profile.jsp");
-				requst.forward(request, response);
-			} else {
-				response.sendRedirect(request.getContextPath() + "/login.jsp");
-			}
-
-		} catch (ValidationException | ServiceException e) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/edit_user.jsp");
+			dispatcher.forward(request, response);
+		} catch (ServiceException | ValidationException | NumberFormatException | IOException | ServletException e) {
 			logger.error(e);
+			throw new ServletException(e.getMessage());
 		}
 	}
+
 }

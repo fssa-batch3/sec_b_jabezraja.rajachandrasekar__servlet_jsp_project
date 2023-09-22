@@ -24,13 +24,13 @@ public class UpdateProductServlet extends HttpServlet {
 
 		ProductEntity product = new ProductEntity();
 		try {
-			
+
 			if (request.getParameter("name") == null || request.getParameter("name").isEmpty()) {
 				System.out.println("Product Name cannot be null or empty");
 			} else {
 				product.setName(request.getParameter("name"));
 			}
-			
+
 			if (request.getParameter("description") == null || request.getParameter("description").isEmpty()) {
 				System.out.println("Description cannot be null or empty");
 			} else {
@@ -71,9 +71,7 @@ public class UpdateProductServlet extends HttpServlet {
 
 			productService.update(productId, product);
 			response.sendRedirect(request.getContextPath() + "/products");
-		} catch (ServiceException e) {
-			e.printStackTrace();
-		} catch (ValidationException e) {
+		} catch (ServiceException | ValidationException e) {
 			e.printStackTrace();
 		}
 	}

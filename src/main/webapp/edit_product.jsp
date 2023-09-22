@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>EDIT PRODUCT FORM</title>
+<title>Online Shopping Site</title>
     <link rel="icon" href="<%=request.getContextPath()%>/assets/images/logo4.jpg" type="image/x-icon">
 <style>
 /* Reset some default styles for cross-browser consistency */
@@ -14,13 +14,11 @@ body, p, h1, h2, h3, ul, li {
     padding: 0;
 }
 
-.heading{
+h1 {
     text-align: center;
-    line-height: 45px;
-    color: #aa8531;
+    padding-top: 15px;
     font-family: 'Philosopher', serif;
-    font-size: 38px;
-    margin-top: revert;
+    font-weight: 200;
 }
 
 /* Set a background color for the body */
@@ -34,6 +32,7 @@ body.manico {
     background-color: #ffffff;
     border: 1px solid #ccc;
     margin: 20px auto;
+    margin-top: 7rem;
     max-width: 400px;
     padding: 20px;
     border-radius: 5px;
@@ -50,12 +49,13 @@ body.manico {
 /* Style the form input fields */
 .inter input[type="text"],
 .inter input[type="url"] {
-    width: 100%;
+    width: 94%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 3px;
     transition: border-color 0.3s;
+    outline: none;
 }
 
 /* Style the submit button */
@@ -71,6 +71,7 @@ body.manico {
     background-color: #900c19;
     color: #f2c452;
     border: none;
+    min-width: 130px;
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 3px;
@@ -97,21 +98,15 @@ body.manico {
     display: none;
 }
 
-#descrin{
-	width:22pc;
-	    height: 2pc;
-}
-
 </style>
 </head>
-<jsp:include page="header.jsp"></jsp:include>
 <body class="manico">
-<h3 class="heading">Edit Form</h3>
 <% 
 ProductEntity product = (ProductEntity)	request.getAttribute("editProduct");
 %>
                 <form action="update?id=<%= product.getId() %>" method="post">
                     <div class="adm_editform">
+                      <h1>Edit Form</h1>
                         <div class="inter">
                             <input id="pro_id" type="hidden" name="id" value="<%= product.getId() %>" >
                             <input id="pro_id" type="text" name="subid" value="<%= product.getSubCategoryId() %>" readonly>
@@ -140,7 +135,7 @@ ProductEntity product = (ProductEntity)	request.getAttribute("editProduct");
                         </div>
                         <div class="inter">
                             <label>Description</label>
-                            <input id="descrin" title="" name="description" value="<%= product.getDescription() %>" required>
+                            <input id="descrin" name="description" value="<%= product.getDescription() %>" type="text" required>
 
                             <div class="adm_editformbtn">
                                 <div id="admfbtnd">
@@ -148,7 +143,10 @@ ProductEntity product = (ProductEntity)	request.getAttribute("editProduct");
                                 </div>
 
                                 <div id="admfbtnd">
-                                    <button class="ebtn" id = "save" type="reset" >CANCEL</button></div>
+                                    <a href="<%=request.getContextPath()%>/products">
+										<button type="button" class="ebtn" id="save">CANCEL</button>
+									</a>
+								</div>
                             </div> 
                         </div>
                     </div>

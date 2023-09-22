@@ -62,7 +62,7 @@
                     <div class="admface face2">
                         <div class="admcontent">
                             <p>Customers Data</p>
-                            <a href="#">Read More</a>
+                            <a href="<%=request.getContextPath()%>/users">Read More</a>
                         </div>
                     </div>
                 </div>
