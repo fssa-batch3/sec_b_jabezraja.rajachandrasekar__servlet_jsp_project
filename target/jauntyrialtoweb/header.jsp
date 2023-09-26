@@ -6,8 +6,9 @@
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/assets/css/style.css" />
-	<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+	<link rel="stylesheet" href="https://unpkg.com/sweetalert/dist/sweetalert.css">
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 
@@ -17,10 +18,10 @@
 	%>
 	<header id="hed">
 		<div id="hf" class="header-left">
-			<a href="<%=request.getContextPath()%>/index.jsp">JAUNTY</a>
+			<a href="<%=request.getContextPath()%>/index">JAUNTY</a>
 			<div class="header-left-p">
 				<p>
-					<a href="<%=request.getContextPath()%>/index.jsp"> RIALTO</a>
+					<a href="<%=request.getContextPath()%>/index"> RIALTO</a>
 				</p>
 			</div>
 		</div>
@@ -34,10 +35,10 @@
 	%>
 	<header id="hed">
 		<div class="header-left">
-			<a href="<%=request.getContextPath()%>/index.jsp">JAUNTY</a>
+			<a href="<%=request.getContextPath()%>/index">JAUNTY</a>
 			<div class="header-left-p">
 				<p>
-					<a href="<%=request.getContextPath()%>/index.jsp"> RIALTO</a>
+					<a href="<%=request.getContextPath()%>/index"> RIALTO</a>
 				</p>
 			</div>
 		</div>
@@ -77,8 +78,8 @@
 						<a href="<%=request.getContextPath()%>/pages/admin/adm_home.jsp">Sell on JR</a>
 					</li>
 					<li class="login_drop_li">
-						<i class="more-icon fa fa-download"></i>
-						<a href="<%=request.getContextPath()%>/logout">Download App</a>
+					    <i class="more-icon fa fa-download"></i>
+					    <a href="#" onclick="showComingSoonMessage()">Download App</a>
 					</li>
 				</ul>
 			</div>
@@ -94,6 +95,11 @@
 	</header>
 	<%
 	}
-	%>
+	%>	
+	  <script>
+	    function showComingSoonMessage() {
+	      swal("Mobile App Coming Soon!", "Our mobile application is under development and will be available soon. Stay tuned for updates!", "warning");
+	    }
+	  </script>
 </body>
 </html>

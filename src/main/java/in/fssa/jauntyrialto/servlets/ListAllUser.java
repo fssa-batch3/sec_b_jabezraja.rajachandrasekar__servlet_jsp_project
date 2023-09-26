@@ -35,13 +35,10 @@ public class ListAllUser extends HttpServlet {
 			request.setAttribute("userList", users);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/admin/all_users.jsp");
 			dispatcher.forward(request, response);
-		} catch (ServiceException e) {
+		} catch (ServiceException | IOException | ServletException e) {
 			e.printStackTrace();
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
 					"An error occurred while retrieving products.");
-		} catch (IOException | ServletException e) {
-			e.printStackTrace();
-			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred.");
 		}
 	}
 

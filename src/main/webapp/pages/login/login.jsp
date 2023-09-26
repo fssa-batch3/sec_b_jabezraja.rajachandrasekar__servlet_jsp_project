@@ -15,20 +15,9 @@
 </head>
 <body>
 	<div class="login-box">
+
 		<h1>LOGIN</h1>
-		<%
-		String errorMessage = request.getParameter("errorMessage");
-		if (errorMessage != null) {
-		%>
 
-		<div class="alert alert-danger" role="alert">
-			<span style="color: red;"><%=errorMessage%></span>
-
-			<!-- this will change based on invalid field entered -->
-		</div>
-		<%
-		}
-		%>
 		<form action="<%=request.getContextPath()%>/login" method="get">
 			<label>EMAIL</label> <input id="email" name="email" type="email"
 				required> <label>PASSWORD</label> <input id="password"
@@ -36,6 +25,17 @@
 				pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
 				title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
 				required>
+			<%
+			String errorMessage = request.getParameter("errorMessage");
+			if (errorMessage != null) {
+			%>
+
+			<div class="alert alert-danger" role="alert">
+				<span style="color: red;"><%=errorMessage%></span>
+			</div>
+			<%
+			}
+			%>
 			<button class="btn" type="submit">SUBMIT</button>
 		</form>
 	</div>
@@ -44,5 +44,6 @@
 			href="<%=request.getContextPath()%>/pages/login/signUp.jsp">Sign
 			Up here</a>
 	</p>
+
 </body>
 </html>

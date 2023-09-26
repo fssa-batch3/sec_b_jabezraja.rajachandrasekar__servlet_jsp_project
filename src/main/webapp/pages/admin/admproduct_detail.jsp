@@ -33,21 +33,25 @@
 				<div class="image">
 					<img src="<%=pdt.getMainImg()%>"
 						alt="boAt BassHeads 950v2 wired Over Ear Headphones (Warm Grey)"
-						height="450px" width="400px" />
+						height="450px" width="400px" id="img_of_product" />
 				</div>
 				<div class="subi">
 					<div class="sub-images">
 						<img src="<%=pdt.getMainImg()%>"
-							alt="boAt BassHeads 950v2 wired Over Ear Headphones (Warm Grey)" />
+							alt="boAt BassHeads 950v2 wired Over Ear Headphones (Warm Grey)"
+							onclick="handleSubImageClick('<%=pdt.getMainImg()%>')" />
 					</div>
 					<div class="sub-images">
-						<img src="<%=pdt.getSubImg1()%>" alt="40mm driver" />
+						<img src="<%=pdt.getSubImg1()%>" alt="40mm driver"
+							onclick="handleSubImageClick('<%=pdt.getSubImg1()%>')" />
 					</div>
 					<div class="sub-images">
-						<img src="<%=pdt.getSubImg2()%>" alt="lightweight" />
+						<img src="<%=pdt.getSubImg2()%>" alt="lightweight"
+							onclick="handleSubImageClick('<%=pdt.getSubImg2()%>')" />
 					</div>
 					<div class="sub-images">
-						<img src="<%=pdt.getSubImg3()%>" alt="3.5mm gold plated jack" />
+						<img src="<%=pdt.getSubImg3()%>" alt="3.5mm gold plated jack"
+							onclick="handleSubImageClick('<%=pdt.getSubImg3()%>')" />
 					</div>
 				</div>
 			</div>
@@ -83,5 +87,12 @@
 	%>
 
 	<jsp:include page="/pages/footer/footer.jsp"></jsp:include>
+	<script>
+		// Function to handle sub-image click event
+		function handleSubImageClick(subImageSrc) {
+			const img_of_product = document.getElementById("img_of_product");
+			img_of_product.src = subImageSrc;
+		}
+	</script>
 </body>
 </html>

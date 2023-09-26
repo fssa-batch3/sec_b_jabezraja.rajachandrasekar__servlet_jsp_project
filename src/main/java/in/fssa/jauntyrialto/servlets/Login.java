@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import in.fssa.jauntyrialto.entity.UserEntity;
 import in.fssa.jauntyrialto.exception.ServiceException;
-import in.fssa.jauntyrialto.exception.ValidationException;
 import in.fssa.jauntyrialto.service.UserService;
 import in.fssa.jauntyrialto.util.Logger;
 
@@ -43,11 +42,11 @@ public class Login extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("loggedEmail", email);
 
-			response.sendRedirect(request.getContextPath() + "/index.jsp");
+			response.sendRedirect(request.getContextPath() + "/index");
 
 		} catch (ServiceException e) {
 
-			response.sendRedirect("login.jsp?errorMessage=" + e.getMessage());
+			response.sendRedirect(request.getContextPath() + "/pages/login/login.jsp?errorMessage=" + e.getMessage());
 			logger.error(e);
 		}
 	}

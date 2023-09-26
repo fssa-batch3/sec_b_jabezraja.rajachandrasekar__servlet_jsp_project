@@ -32,13 +32,10 @@ public class ProductListServlet extends HttpServlet {
 			request.setAttribute("productList", products);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/all_products.jsp");
 			dispatcher.forward(request, response);
-		} catch (ServiceException e) {
+		} catch (ServiceException | IOException | ServletException e) {
 			e.printStackTrace();
 			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
 					"An error occurred while retrieving products.");
-		} catch (IOException | ServletException e) {
-			e.printStackTrace();
-			response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "An error occurred.");
 		}
 	}
 

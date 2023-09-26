@@ -1,4 +1,3 @@
-
 <%@page import="in.fssa.jauntyrialto.model.Product"%>
 <%@page import="in.fssa.jauntyrialto.entity.ProductEntity"%>
 <%@page import="java.util.Set"%>

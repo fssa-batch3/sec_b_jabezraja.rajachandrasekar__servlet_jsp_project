@@ -14,7 +14,7 @@
 <jsp:include page="/header.jsp"></jsp:include>
 <body>
 	<div class="headpic">
-		<img src="../../assets/images/banner/cart.png" alt="">
+		<img src="<%=request.getContextPath()%>/assets/images/banner/cart.png" alt="">
 	</div>
 	<div class="head1">MY ACCOUNT</div>
 	<div class="head2">DETAILS</div>

@@ -18,10 +18,10 @@
 	%>
 	<header id="hed">
 		<div id="hf" class="header-left">
-			<a href="<%=request.getContextPath()%>/index.jsp">JAUNTY</a>
+			<a href="<%=request.getContextPath()%>/index">JAUNTY</a>
 			<div class="header-left-p">
 				<p>
-					<a href="<%=request.getContextPath()%>/index.jsp"> RIALTO</a>
+					<a href="<%=request.getContextPath()%>/index"> RIALTO</a>
 				</p>
 			</div>
 		</div>
@@ -35,10 +35,10 @@
 	%>
 	<header id="hed">
 		<div class="header-left">
-			<a href="<%=request.getContextPath()%>/index.jsp">JAUNTY</a>
+			<a href="<%=request.getContextPath()%>/index">JAUNTY</a>
 			<div class="header-left-p">
 				<p>
-					<a href="<%=request.getContextPath()%>/index.jsp"> RIALTO</a>
+					<a href="<%=request.getContextPath()%>/index"> RIALTO</a>
 				</p>
 			</div>
 		</div>
