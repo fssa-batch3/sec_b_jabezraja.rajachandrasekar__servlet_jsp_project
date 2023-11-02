@@ -248,7 +248,7 @@ header {
         border-bottom: 1px solid #e3d1a9;
         cursor: pointer;
         align-content: space-between;
-        width: 760px;
+        /* width: 760px; */
         align-items: center;
 }
 .ordi p {
@@ -257,6 +257,7 @@ header {
         line-height: 18px;
         margin-bottom: auto;
         font-size: 16px;
+        line-height: 2pc;
 }
 .ordi {
         padding: 10px;
@@ -592,10 +593,6 @@ header {
 .codproduct-table {
         width: 100%;
         border-collapse: collapse;
-}
-
-.codproduct-table th {
-        background-color: #fff;
 }
 
 .codproduct-table td {

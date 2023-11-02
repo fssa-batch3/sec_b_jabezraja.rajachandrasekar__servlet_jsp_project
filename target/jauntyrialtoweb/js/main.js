@@ -59,6 +59,3 @@ for (let i = 0; i <= 4; i++) {
 	//     container.append(card_1.cloneNode(true));
 	// });
 }
-
-const cart = JSON.parse(localStorage.getItem("cart_details")) || [];
-localStorage.setItem("cart_details", JSON.stringify(cart));

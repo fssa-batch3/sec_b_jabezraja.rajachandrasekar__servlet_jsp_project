@@ -21,6 +21,7 @@ import in.fssa.jauntyrialto.service.CategoryService;
 public class ListAllCategory extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {

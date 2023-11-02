@@ -61,7 +61,7 @@
 					</li>
 					<li class="login_drop_li">
 						<i class="fa-solid fa-bag-shopping"></i>
-						<a href="<%=request.getContextPath()%>/pages/nav/order.jsp">Order</a>
+						<a href="<%=request.getContextPath()%>/ordersbyuser?id=">Order</a>
 					</li>
 				</ul>
 			</div>
@@ -87,11 +87,11 @@
 
 		<!-- Cart details -->
 
-		<span class="cart_lan">
+	<!-- 	<span class="cart_lan">
 			<a href="pages/cart/cart.html">
 				<i class="fa-solid fa-cart-shopping"></i>
 			</a>
-		</span>
+		</span> -->
 	</header>
 	<%
 	}

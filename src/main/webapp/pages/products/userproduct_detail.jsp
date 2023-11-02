@@ -17,35 +17,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <jsp:include page="/header.jsp"></jsp:include>
-<script>
-        // Increment/decrement counter
-        document.addEventListener("DOMContentLoaded", () => {
-            const minus = document.querySelector(".quantity__minus");
-            const plus = document.querySelector(".quantity__plus");
-            const input = document.querySelector(".sqb");
 
-            const minValue = 1; // Minimum allowed value
-            const maxValue = 12; // Maximum allowed value
-
-            minus.addEventListener("click", (e) => {
-                e.preventDefault();
-                let value = parseInt(input.value);
-                if (value > minValue) {
-                    value--;
-                }
-                input.value = value;
-            });
-
-            plus.addEventListener("click", (e) => {
-                e.preventDefault();
-                let value = parseInt(input.value);
-                if (value < maxValue) {
-                    value++;
-                }
-                input.value = value;
-            });
-        });
-    </script>
 </head>
 <body id="mainco">
 	<%
@@ -89,20 +61,20 @@
 			</div>
 			<div class="right">
 				<h2 id="ph"><%=pdt.getName()%></h2>
-				<p id="rupee">
-					₹<%=pdt.getPrice()%></p>
+				<p id="rupee">₹<%=pdt.getPrice()%></p>
 				<small id="inc">Inclusive of all taxes</small>
+				<input type="hidden">
 				<p>SELECT QUANTITY</p>
 				<div id="sq">
 					<a href="" class="quantity__minus"> <span>-</span>
-					</a> <input type="text" id="incre_decre" class="sqb" value="1" readonly>
-					<a href="" class="quantity__plus"> <span>+</span>
+					</a> <input type="text" id="incre_decre" class="sqb" value="1" readonly
+						required> <a href="" class="quantity__plus"> <span>+</span>
 					</a>
 				</div>
 				<div class="addbuy" style="min-width: 40.625rem;">
-					<a href="order?id=<%=pdt.getId()%>&"><button class="add">Buy
-							Now</button></a>
-					<!-- 	<button class="buy">Delete</button> -->
+					<a href="checkout?id=<%=pdt.getId()%>&qty=" id="buyNowLink" style="min-width: 14.625rem;">
+						<button class="add">Buy Now</button>
+					</a>
 				</div>
 				<div>
 					<div class="des">DESCRIPTION</div>
@@ -114,10 +86,7 @@
 		</div>
 	</main>
 
-	<%
-	}
-	}
-	%>
+
 
 	<jsp:include page="/pages/footer/footer.jsp"></jsp:include>
 	<script>
@@ -127,5 +96,45 @@
 			img_of_product.src = subImageSrc;
 		}
 	</script>
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
+	    const minus = document.querySelector(".quantity__minus");
+	    const plus = document.querySelector(".quantity__plus");
+	    const input = document.querySelector(".sqb");
+	    const buyNowLink = document.getElementById("buyNowLink");
+
+	    const minValue = 1; // Minimum allowed value
+	    const maxValue = 12; // Maximum allowed value
+	    
+	    minus.addEventListener("click", (e) => {
+	        e.preventDefault();
+	        let value = parseInt(input.value);
+	        if (value > minValue) {
+	            value--;
+	        }
+	        input.value = value;
+	        updateBuyNowLink(value);
+	    });
+
+	    plus.addEventListener("click", (e) => {
+	        e.preventDefault();
+	        let value = parseInt(input.value);
+	        if (value < maxValue) {
+	            value++;
+	        }
+	        input.value = value;
+	        updateBuyNowLink(value);
+	    });
+
+	    function updateBuyNowLink(quantity) {
+	        const href = "checkout?id=<%=pdt.getId()%>&qty="+ quantity;
+	        buyNowLink.href = href;
+	    }
+	});
+	</script>
+	<%
+	}
+	}
+	%>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<%@page import="in.fssa.jauntyrialto.model.Product"%>
+<%@page import="in.fssa.jauntyrialto.service.ProductService"%>
 <%@ page import="java.util.*"%>
 <%@page import="in.fssa.jauntyrialto.model.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -20,7 +22,7 @@
 <body>
 	<div class="headpic">
 		<img src="<%=request.getContextPath()%>/assets/images/banner/cart.png"
-			alt="">
+			alt="" style="margin-top: 6px;">
 	</div>
 	<div class="head1">CHECKOUT</div>
 	<div class="head2">PROCESS</div>
@@ -29,6 +31,39 @@
 		<div class="content">
 			<div class="leftside">
 				<div class="log">
+                        <span class="n1">1</span>
+                        <h2>PRODUCT</h2>
+                    </div>
+
+                    <table class="codproduct-table">
+                        <caption></caption>
+                        <tr>
+                            <th>ITEMS</th>
+                            <th>DETAILS</th>
+                            <th>PRICE</th>
+                            <th>SUBTOTAL</th>
+                        </tr>
+                        <tr>
+                        	<%
+							String pdtIdParam = request.getParameter("id");
+							if (pdtIdParam != null && !pdtIdParam.isEmpty()) {
+								int id = Integer.parseInt(pdtIdParam);
+								ProductService productService = new ProductService();
+								Product pdt = productService.findProductByProductId(id);
+								if (pdt != null) {
+							%>
+                            <td>
+                                <img src="<%=pdt.getMainImg()%>" width="150px" height="130px" alt="This is a image of <%=pdt.getName()%>">
+                            </td>
+                            <td>
+                                <p><%=pdt.getName()%></p>
+                                <p>Qty: ${quantity}</p>
+                            </td>          
+                            <td>₹<%=pdt.getPrice()%></td>
+                            <td>₹ <span id="totalPrice"></span></td>
+                        </tr>
+                    </table>
+				<div class="log">
 					<span class="n1"> <img
 						src="<%=request.getContextPath()%>/assets/images/gif/truck-delivery.gif"
 						alt="" height="21px">
@@ -36,48 +71,40 @@
 					<h2>SHIPPING ADDRESS</h2>
 				</div>
 				<div>
-					<form class="cof">
-						<div class="cot">
 							<%
-							User user = (User) request.getAttribute("user");
+								User user = (User) request.getAttribute("user");
 							%>
-							<input id="pro_id" type="hidden" name="id"
-								value="<%=user.getId()%>"> <input class="cofd"
-								id="cuname" type="text" placeholder="NAME" required
-								value="${user.name}"> <input class="cofd" id="cuno"
-								style="margin-left: 20px" type="text" placeholder="MOBIL NUMBER"
-								required value="${user.phone}">
+							
+							<%
+								String productId = request.getParameter("id");
+							%>
+					<form class="cof" action="<%=request.getContextPath()%>/order" method="post">
+						<div class="cot">
+
+							<input id="pro_id" type="hidden" name="userId" value="<%=user.getId()%>">
+							<input class="cofd" id="cuname" type="text" name="userName" placeholder="NAME" required value="${user.name}">
+							<input class="cofd" id="cuno"	style="margin-left: 20px" type="text" name="userNo" placeholder="MOBIL NUMBER" required value="${user.phone}">
+							<input type="hidden" name="qty" value="${quantity}">
+							<input type="hidden" name="total" id="grandTotal" value="">
 						</div>
 						<div class="cot">
-							<input class="cofd" id="cupin" type="text" placeholder="PIN CODE"
-								required value="630007"> <input class="cofd" id="culand"
-								style="margin-left: 20px" type="text" placeholder="LANDMARK"
-								required value="Backside to DHARPHY GYM">
+						
+							<input type="hidden" name="productId" value="<%=productId%>">
+							<input class="cofd" id="cupin" type="text" name="pin" placeholder="PIN CODE" required value="630007"> 
+							<input class="cofd" id="culand" style="margin-left: 20px" type="text" name="landmark" placeholder="LANDMARK" required value="Backside to DHARPHY GYM">
 						</div>
 						<div class="cot">
-							<input class="coft" id="fon" type="text" placeholder="ADDRESS"
-								value="(Ground Floor)No. 83, Perfect Parkview, Palaniappa Nagar, 2nd street, Gowriwakkam, Chennai 600073"
-								required>
+							<input class="coft" id="fon" type="text" placeholder="ADDRESS" name="address" value="(Ground Floor)No. 83, Perfect Parkview, Palaniappa Nagar, 2nd street, Gowriwakkam, Chennai 600073" required>
 						</div>
 						<div class="cot">
-							<input class="cofd" type="text" placeholder="CITY/DISTRICT/TOWN"
-								required value="CHENNAI"> <input id="custate"
-								class="cofd" type="text" style="margin-left: 20px"
-								placeholder="STATE" Value="TamilNadu" required>
+							<input class="cofd" type="text" placeholder="CITY/DISTRICT/TOWN" required name="add" value="CHENNAI"> 
+							<input id="custate" class="cofd" type="text" style="margin-left: 20px" placeholder="STATE" name="state" Value="TamilNadu" required>
 						</div>
 						<div class="cobtn">
-							<a href="./payment.html" class="sd">CHECKOUT</a> <a
-								href="<%=request.getContextPath()%>/index" class="ca">CANCEL</a>
+							 <button type="submit" class="sd">CHECKOUT</button>
+    						 <a href="<%=request.getContextPath()%>/index" class="ca">CANCEL</a>
 						</div>
-						<%
-						// Retrieve the product ID and quantity from the request
-						String productId = request.getParameter("id");
-						String quantity = request.getParameter("qty");
 
-						// Do something with the retrieved values, for example, print them
-						out.println("Product ID: " + productId);
-						out.println("Quantity: " + quantity);
-						%>
 					</form>
 				</div>
 
@@ -89,18 +116,40 @@
 					<caption></caption>
 					<tr>
 						<td>TOTAL ITEM</td>
-						<td id="rf">1</td>
+						<td id="rf">${quantity}</td>
+					</tr>
+					<tr>
+						<td>SHIPPING</td>
+						<td id="rf">₹15</td>
 					</tr>
 					<tr>
 						<td>TOTAL AMOUNT</td>
-						<td id="rf">₹2516</td>
+						<td>₹<span id="finalTotal"></span></td>
 					</tr>
 				</table>
 			</div>
 
 		</div>
 	</main>
-	<%-- 	<jsp:include page="/pages/footer/footer.jsp"></jsp:include>
- --%>
+	 	<jsp:include page="/pages/footer/footer.jsp"></jsp:include>
+	 	 <script>
+			const quantity = ${quantity};
+			const productPrice = <%=pdt.getPrice()%>;
+			
+			const totalPrice = quantity * productPrice;
+			
+			document.getElementById("totalPrice").innerText = totalPrice.toFixed(2);
+			
+			let tp = totalPrice + 15;
+			document.getElementById("grandTotal").value = tp.toFixed(2);
+			document.getElementById("finalTotal").innerText = tp.toFixed(2);
+			
+			
+
+		</script>
+	<%
+			}
+		}
+	%>
 </body>
 </html>

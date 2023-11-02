@@ -16,7 +16,6 @@
 <body class="manico">
 	<%
 	Set<CategoryEntity> listOfcategories = (Set<CategoryEntity>) request.getAttribute("categoryList");
-	System.out.println(listOfcategories);
 	%>
 	<!-----Banner----->
 	<div class="mbody">
@@ -48,11 +47,16 @@
 					<%
 					for (CategoryEntity category : listOfcategories) {
 					%>
+
 					<div class="common-col">
-						<img class="product-img" src="<%=category.getImg()%>"
+						<a
+							href="<%=request.getContextPath()%>/productsbycategory?id=<%=category.getId()%>">
+							<img class="product-img" src="<%=category.getImg()%>"
 							alt="<%=category.getName()%>">
+						</a>
 						<h3 class="product-title"><%=category.getName()%></h3>
 					</div>
+
 					<%
 					}
 					%>
@@ -66,7 +70,5 @@
 
 	</div>
 	<%@ include file="pages/footer/footer.jsp"%>
-
-	<script src="./js/main.js"></script>
 </body>
 </html>

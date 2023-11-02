@@ -13,6 +13,7 @@ import in.fssa.jauntyrialto.entity.UserEntity;
 import in.fssa.jauntyrialto.exception.ServiceException;
 import in.fssa.jauntyrialto.exception.ValidationException;
 import in.fssa.jauntyrialto.service.UserService;
+import in.fssa.jauntyrialto.util.Logger;
 
 /**
  * Servlet implementation class SignUp
@@ -20,6 +21,7 @@ import in.fssa.jauntyrialto.service.UserService;
 @WebServlet("/signUp")
 public class SignUp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	Logger logger = new Logger();
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -39,21 +41,15 @@ public class SignUp extends HttpServlet {
 		user.setPassword(password);
 		user.setPhone(phonenumber);
 		user.setConfirmPassword(confirmPassword);
-		System.out.println(user);
 		UserService userservice = new UserService();
-		PrintWriter out = response.getWriter();
 		try {
 
 			userservice.create(user);
 			response.sendRedirect(request.getContextPath() + "/pages/login/login.jsp");
 
 		} catch (ServiceException | ValidationException e) {
-
-			e.printStackTrace();
-			out.println(e.getMessage());
-
+			logger.error(e);
 		}
 
 	}
-
 }

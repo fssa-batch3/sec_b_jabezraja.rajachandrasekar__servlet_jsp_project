@@ -594,10 +594,6 @@ header {
         border-collapse: collapse;
 }
 
-.codproduct-table th {
-        background-color: #fff;
-}
-
 .codproduct-table td {
         padding-left: 70px;
         font-family: 'Philosopher', serif;
